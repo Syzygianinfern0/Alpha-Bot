@@ -1,42 +1,3 @@
-# What is this repo about?
-This is a telegram bot writen in python for mirroring files on the internet to our beloved Google Drive.
-
-# Inspiration 
-This project is heavily inspired from @out386 's telegram bot which is written in JS.
-
-# Features supported:
-- Mirroring direct download links to google drive
-- Download progress
-- Upload progress
-- Download/upload speeds and ETAs
-- Docker support
-- Uploading To Team Drives.
-- Index Link support
-
-# Upcoming features (TODOs):
-- Mirror from Telegram files
-
-# How to deploy?
-Deploying is pretty much straight forward and is divided into several steps as follows:
-## Installing requirements
-
-- Clone this repo:
-```
-git clone https://github.com/lzzy12/python-aria-mirror-bot mirror-bot/
-cd mirror-bot
-```
-
-- Install requirements
-For Debian based distros
-```
-sudo apt install python3
-sudo snap install docker 
-```
-- For Arch and it's derivatives:
-```
-sudo pacman -S docker python
-```
-
 ## Setting up config file
 ```
 cp config_sample.env config.env
@@ -70,21 +31,6 @@ Note: You can limit maximum concurrent downloads by changing the value of MAX_CO
 pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
 python3 generate_drive_token.py
 ```
-## Deploying
-
-- Start docker daemon (skip if already running):
-```
-sudo dockerd
-```
-- Build Docker image:
-```
-sudo docker build . -t mirror-bot
-```
-- Run the image:
-```
-sudo docker run mirror-bot
-```
-
 ## Deploying on Heroku
 - Run the script to generate token file(token.pickle) for Google Drive:
 ```
