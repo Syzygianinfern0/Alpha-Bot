@@ -87,14 +87,15 @@ def get_readable_message():
         for download in list(download_dict.values()):
             msg += f"<b>Name:</b> <code>{download.name()}</code>"
             msg += f"\n<b>Status:</b> <code>{download.status()}</code>"
-            if download.status() != MirrorStatus.STATUS_ARCHIVING:
-                msg += f"\n<code>{get_progress_bar_string(download)} {download.progress()}</code>" \
-                    f"\n<b>Size:</b> {download.size()}" \
-                    f"\n<b>Speed:</b> {download.speed()}, \n<b>ETA:</b> {download.eta()} "
-            if download.status() == MirrorStatus.STATUS_DOWNLOADING:
-                if hasattr(download, 'is_torrent'):
-                    msg += f"\n<b>Peers</b>: {download.download().connections} " \
-                           f"<b>Seeders</b>: {download.download().num_seeders}"
+            if download.status() != MirrorStatus.STATUS_WAITING:
+                if download.status() != MirrorStatus.STATUS_ARCHIVING:
+                    msg += f"\n<code>{get_progress_bar_string(download)} {download.progress()}</code>" \
+                        f"\n<b>Size:</b> {download.size()}" \
+                        f"\n<b>Speed:</b> {download.speed()}, \n<b>ETA:</b> {download.eta()} "
+                if download.status() == MirrorStatus.STATUS_DOWNLOADING:
+                    if hasattr(download, 'is_torrent'):
+                        msg += f"\n<b>Peers</b>: {download.download().connections} " \
+                               f"<b>Seeders</b>: {download.download().num_seeders}"
             msg += "\n\n"
         return msg
 
